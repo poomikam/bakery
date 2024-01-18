@@ -1,0 +1,26 @@
+<!-- checkout.component.html -->
+<div class="checkout-container">
+  <h2>Checkout</h2>
+  
+  <form class="checkout-form" *ngIf="!orderPlaced" (submit)="placeOrder()">
+    <label for="name">Name:</label>
+    <input type="text" id="name" [(ngModel)]="orderDetails.name" name="name" required><br>
+
+    <label for="phone">Phone:</label>
+    <input type="tel" id="phone" [(ngModel)]="orderDetails.phone" name="phone" required><br>
+
+    <label for="message">Message on Cake:</label>
+    <textarea id="message" [(ngModel)]="orderDetails.message" name="message"></textarea><br>
+
+    <label for="deliveryDate">Date to be delivered:</label>
+    <input type="date" id="deliveryDate" [(ngModel)]="orderDetails.deliveryDate" name="deliveryDate" required>
+
+    <button type="submit">Place Order</button>
+  </form>
+
+  <div class="order-container">
+  <div *ngIf="orderPlaced" class="order-details">
+    <h3>Order Placed!</h3>
+  </div>
+  <img *ngIf="orderPlaced" src="assets/images/order.jpg" alt="Order Placed Image">
+</div>

@@ -1,0 +1,21 @@
+/* Style definition for the container */
+.custom-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(to right, #87CEEB, #00008B); /* Ombre background from light blue to deep blue */
+    color: white; /* Set text color to white for better readability */
+    font-family: 'YourScriptFont', cursive; /* Replace 'YourScriptFont' with the desired script font */
+  }
+  
+  .left,
+  .right {
+    width: 50%;
+    padding: 20px;
+  }
+  
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  

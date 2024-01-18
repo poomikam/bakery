@@ -1,0 +1,57 @@
+/* modal.component.css */
+
+.modal-header {
+  background: linear-gradient(to right, #007bff, #001f3f);
+  color: white;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative; /* Added position relative for absolute positioning */
+}
+
+.modal-header h2 {
+  margin: 0;
+}
+
+.modal-header span {
+  cursor: pointer;
+  position: absolute;
+  top: 5px; /* Adjust the top position as needed */
+  right: 10px; /* Adjust the right position as needed */
+}
+
+.modal-body {
+  padding: 20px;
+}
+
+.cake-image-modal {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Set a maximum width for the modal body */
+.modal-body {
+  max-width: 400px; /* Adjust the maximum width as needed */
+  margin: 0 auto; /* Center the modal body */
+}
+
+/* Style the select box */
+select {
+  padding: 8px;
+  font-size: 16px;
+}
+
+/* Style the "Add to Cart" button */
+button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+/* Style the close button */
+.modal-header span {
+  font-size: 20px;
+}

@@ -1,0 +1,22 @@
+<!-- modal.component.html -->
+
+<div class="modal-header">
+    <h2>{{ data.cake.name }} <span (click)="closeModal()">X</span></h2>
+  </div>
+  
+  <div class="modal-body">
+    <img [src]="data.cake.image" alt="{{ data.cake.name }}" class="cake-image-modal">
+   <!---<p>{{ data.cake.description }}</p>-->
+    <p>Price: {{ calculatedPrice | currency:'USD':'symbol':'1.2-2' }}</p>
+    <p>Weight:
+      <select [(ngModel)]="selectedWeight" (change)="updateCalculatedPrice(data.cake)">
+        <option value="0.5">0.5 kg</option>
+        <option value="1">1 kg</option>
+        <option value="1.5">1.5 kg</option>
+        <option value="2">2 kg</option>
+      </select>
+    </p>
+  
+    <button mat-button (click)="addToCart(data.cake, selectedWeight)">Add to Cart</button>
+  </div>
+  

@@ -1,0 +1,11 @@
+<!-- our.component.html -->
+
+<div class="our-grid">
+    <div *ngFor="let cake of cakes" class="our-item">
+      <img [src]="cake.image" alt="{{ cake.name }}" class="cake-image">
+      <h2>{{ cake.name }}</h2>
+      <p>{{ cake.description }}</p>
+      <button class="taste-button" (click)="openCakeModal(cake)">Taste Me Now</button>
+    </div>
+  </div>
+  
