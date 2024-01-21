@@ -1,4 +1,5 @@
-<nav class="navbar">
+<!-- navbar.component.html -->
+<div class="navbar">
   <div class="navbar-container">
     <a routerLink="/home" class="brand">Tn-76 Cake'N'Bake</a>
     <div class="nav-links">
@@ -7,9 +8,9 @@
       <a routerLink="/our" routerLinkActive="active" class="nav-link">Our Cakes</a>
       <a routerLink="/cart" routerLinkActive="active" class="nav-link">
         <img src="./assets/images/cartt.png" alt="Cart" class="cart-icon">
-      
+        <span class="cart-item-count" *ngIf="cartItemCount > 0">{{ cartItemCount }}</span>
       </a>
       <a routerLink="/cart" routerLinkActive="active" class="nav-link">Cart</a>
     </div>
   </div>
-</nav>
+</div>

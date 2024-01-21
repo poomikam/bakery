@@ -1,17 +1,26 @@
 // navbar.component.ts
-import { Component } from '@angular/core';
-import { CartService } from '../cart.service'; // Import CartService
+import { Component, OnInit } from '@angular/core';
+import { CartService } from '../cart.service';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css'],
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit {
+  cartItemCount: number = 0;
+
   constructor(private cartService: CartService) {}
 
-  // Define the cartItemCount method to get the number of items in the cart
-  //cartItemCount(): number {
-    //return this.cartService.getCartItemCount();
-  //}
+  ngOnInit(): void {
+    this.updateCartItemCount();
+    this.cartService.cartItems$.subscribe(() => {
+      this.updateCartItemCount();
+    });
+  }
+
+  private updateCartItemCount(): void {
+    const cartItems = this.cartService.getCartItems();
+    this.cartItemCount = cartItems.length;
+  }
 }

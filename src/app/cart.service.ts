@@ -1,6 +1,6 @@
 // cart.service.ts
-
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,27 +8,31 @@ import { Injectable } from '@angular/core';
 export class CartService {
   private cartKey = 'myCart';
 
-  private cartItems: any[] = this.getCartItemsFromLocalStorage();
+  private cartItemsSubject: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
+  public cartItems$: Observable<any[]> = this.cartItemsSubject.asObservable();
+
+  constructor() {
+    // Initialize cartItems from local storage
+    this.cartItemsSubject.next(this.getCartItemsFromLocalStorage());
+  }
 
   getCartItems(): any[] {
-    return this.cartItems;
+    return this.cartItemsSubject.value;
   }
 
   addItem(item: any): void {
-    this.cartItems.push(item);
+    this.cartItemsSubject.next([...this.cartItemsSubject.value, item]);
     this.updateLocalStorage();
   }
 
   removeItem(item: any): void {
-    const index = this.cartItems.indexOf(item);
-    if (index !== -1) {
-      this.cartItems.splice(index, 1);
-      this.updateLocalStorage();
-    }
+    const updatedItems = this.cartItemsSubject.value.filter(cartItem => cartItem !== item);
+    this.cartItemsSubject.next(updatedItems);
+    this.updateLocalStorage();
   }
 
   clearCart(): void {
-    this.cartItems = [];
+    this.cartItemsSubject.next([]);
     this.updateLocalStorage();
   }
 
@@ -38,7 +42,7 @@ export class CartService {
   }
 
   private updateLocalStorage(): void {
-    localStorage.setItem(this.cartKey, JSON.stringify(this.cartItems));
+    localStorage.setItem(this.cartKey, JSON.stringify(this.cartItemsSubject.value));
   }
 
   addToCart(item: any): void {
